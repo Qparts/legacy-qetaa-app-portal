@@ -8,10 +8,10 @@ public class AppConstants {
 	private final static String CART_SERVICE = SERVICE_HOST +"/service-qetaa-cart/rest/";
 	private final static String PAYMENT_SERVICE = SERVICE_HOST +"/service-qetaa-payment/rest/";
 	private final static String PROMOTION_SERVICE = SERVICE_HOST  + "/service-qetaa-vendor/rest/promotion/";
-	
+
 	public final static String POST_LOGIN = VENDOR_SERVICE + "login";
 	
-	public final static String APP_SECRET = "093X3b*y&iWu4U&F181X#3ZE0)%9374";
+	public final static String APP_SECRET = "secret";
 	
 	public final static String PUT_QUOTATION_ITEM = CART_SERVICE + "quotation-vendor-item";
 	public final static String PUT_PREPARE_ITEM = CART_SERVICE + "vendor-prepare-item";
