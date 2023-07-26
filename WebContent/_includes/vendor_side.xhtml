@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:layoutUnit position="west" id="west"
+		styleClass="q-dashboard-background" size="200">
+		<div class="w3-container">
+			<div class="w3-col">
+				<p>
+					<h:outputLink style="text-decoration:none;" value="home">
+						<span>Welcome, <strong>#{loginBean.userHolder.vendorUser.firstName}</strong></span>
+					</h:outputLink>
+				</p>
+			</div>
+			<br /> <br />
+			<h:form>
+				<p:panelMenu styleClass="q-panel-menu">
+					<p:submenu label="Operations" expanded="true" >
+						<p:menuitem value="Quotations" outcome="quotations" ajax="false" />
+						<p:menuitem value="Parts Orders" outcome="part_orders"  ajax="false" />
+					</p:submenu>
+					<p:submenu label="Sales" expanded="true" >
+						<p:menuitem value="Outstanding PO." outcome="outstanding-purchase-orders" ajax="false" />
+					</p:submenu>
+					<p:submenu label="Configurations" expanded="true">
+						<p:menuitem value="Setting" outcome="setting" ajax="false" />
+					</p:submenu>
+				</p:panelMenu>
+			</h:form>
+		</div>
+	</p:layoutUnit>
+</ui:composition>

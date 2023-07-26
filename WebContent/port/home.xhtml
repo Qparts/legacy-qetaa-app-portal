@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Qit3 - Dashboard</title>
+	<ui:include src="/_includes/_vendor_header" />
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="62"
+			styleClass="q-dashboard-background" id="north">
+			<ui:include src="/_includes/top_vendor" />
+		</p:layoutUnit>
+		<ui:include src="/_includes/vendor_side" />
+		<p:layoutUnit position="center">
+			<div class="w3-container">
+				<div align="center" class="w3-padding-8">
+					<h:outputText
+						value="Welcome #{loginBean.userHolder.vendorUser.firstName} , #{loginBean.userHolder.vendorUser.vendor.name}"
+						styleClass="q-large-text" />
+						<br/>
+					<h:outputText
+						value="to Qetaa Portal"
+						styleClass="q-med-text" />
+				</div>
+				<br />
+				<div>
+					<div class="w3-row">
+						<h:panelGroup styleClass="w3-quarter">
+							<h:outputLink value="quotations" styleClass="q-no-decoration">
+								<div class="w3-panel q-panel" align="center">
+									<br />
+									<p>
+										<h:outputText value="Quotations" styleClass="q-med-text" />
+										<br />
+										<h:outputText value="#{notificationBean.quotations}"
+											styleClass="q-med-text" />
+									</p>
+								</div>
+							</h:outputLink>
+						</h:panelGroup>
+						<h:panelGroup styleClass="w3-quarter">
+							<h:outputLink value="part_orders"
+								styleClass="q-no-decoration">
+								<div class="w3-panel q-panel" align="center">
+									<br />
+									<p>
+										<h:outputText value="Parts Orders" styleClass="q-med-text" />
+										<br />
+										<h:outputText value="#{notificationBean.parts}"
+											styleClass="q-med-text" />
+									</p>
+								</div>
+							</h:outputLink>
+						</h:panelGroup>
+					</div>
+				</div>
+
+			</div>
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>

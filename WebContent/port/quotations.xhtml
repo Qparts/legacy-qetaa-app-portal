@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Qetaa - Portal</title>
+	<ui:include src="/_includes/_vendor_header" />
+</h:head>
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="62"
+			styleClass="q-dashboard-background" id="north">
+			<ui:include src="/_includes/top_vendor" />
+		</p:layoutUnit>
+		<ui:include src="/_includes/vendor_side" />
+		<p:layoutUnit position="center">
+			<h:form id="form-g">
+				<p:growl id="error-growl"
+					rendered="#{facesContext.maximumSeverity.ordinal eq 2}" />
+				<p:growl id="success-growl"
+					rendered="#{facesContext.maximumSeverity.ordinal eq 0}" />
+			</h:form>
+			<div class="w3-container">
+				<div align="center" class="w3-padding-8">
+					<h:outputText value="Quotation Items" styleClass="q-large-text" />
+				</div>
+				<br />
+				<div>
+					<h:form>
+						<h:dataTable value="#{quotationsBean.quotationItems}" var="item"
+							styleClass="w3-table w3-striped w3-border"
+							headerClass="w3-border w3-light-grey">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Cart" />
+								</f:facet>
+								<h:outputText value="#{item.cartId}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Vin" />
+								</f:facet>
+								<h:outputText value="#{item.vin}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Vehicle" />
+								</f:facet>
+								<h:outputText
+									value="#{item.modelYear.make.name} - #{item.modelYear.model.name} - #{item.modelYear.year}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Desc" />
+								</f:facet>
+								<h:outputText value="#{item.itemDesc}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Quantity" />
+								</f:facet>
+								<div align="center">
+									<h:selectOneMenu value="#{item.vendorQuantity}">
+										<f:selectItem itemValue="#{0}" itemLabel="#{0}" />
+										<f:selectItems value="#{item.quantityArray}" var="q"
+											itemValue="#{q}" itemLabel="#{q}" />
+										<f:ajax execute="@this" render="@this" />
+									</h:selectOneMenu>
+								</div>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Part Number" />
+								</f:facet>
+								<h:inputText value="#{item.itemNumber}"
+									style="text-transform: uppercase">
+									<f:ajax execute="@this" render="@this" />
+								</h:inputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Unit Price" />
+								</f:facet>
+								<h:inputText style="width:70px" value="#{item.itemCostPrice}">
+									<f:ajax execute="@this" render="@this gross" />
+								</h:inputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Gross Price" />
+								</f:facet>
+								<h:outputText style="width:70px" value="#{item.itemCostPrice * item.vendorQuantity}" id="gross"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Submit" />
+								</f:facet>
+								<h:commandButton value="Submit"
+									actionListener="#{quotationsBean.submitQuotationItem(item)}"
+									styleClass="q-btn">
+								</h:commandButton>
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</div>
+
+			</div>
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>

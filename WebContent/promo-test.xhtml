@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Qetaa Workshop Promotion</title>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Raleway" />
+	<h:outputStylesheet library="css" name="w3.css" />
+	<h:outputStylesheet library="css" name="design.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="page.css" />
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<h:outputStylesheet library="css" name="dashboard.css" />
+	<h:outputStylesheet library="css" name="bootstrap-rtl.css" />
+</h:head>
+<h:body dir="ltr">
+	<ui:include src="/_includes/_customer_top" />
+	<div class="w3-container" align="center">
+		<br /> <br />
+		<h:form id="form-g">
+			<p:growl id="error-growl"
+				rendered="#{facesContext.maximumSeverity.ordinal eq 2}" />
+			<p:growl id="success-growl"
+				rendered="#{facesContext.maximumSeverity.ordinal eq 0}" />
+		</h:form>
+		<h:form>
+			<div class="w3-card-2" style="width: 400px">
+				<div class="w3-padding-12"></div>
+				<h:panelGrid columns="1" style="width:300px" styleClass="w3-center">
+					<h:outputText value="Enter Promotion Code" />
+					<h:inputText value="#{promotionTestBean.promoString}"
+						a:placeholder="promocode" required="true"
+						requiredMessage="Enter Promo Code" styleClass="w3-input w3-border" />
+					<div class="w3-padding-8"></div>
+					<h:commandButton value="Find Promo Code"
+						actionListener="#{promotionTestBean.findPromoCode()}"
+						styleClass="w3-btn q-btn-vendor"/>
+					<div class="w3-padding-8"></div>
+				</h:panelGrid>
+				<h:panelGroup rendered="#{promotionTestBean.wsPromo != null}">
+					<div align="center" dir="ltr">
+					<h:panelGrid columns="1">
+					<h:outputText value="Promo Code: " />
+						<h:inputText value="#{promotionTestBean.wsPromo.promoCode}" styleClass="w3-input w3-border" disabled="true"/>
+						<h:outputText value="Expire Date: " />
+						<h:inputText value="#{promotionTestBean.wsPromo.expire}" styleClass="w3-input w3-border" style="color:#{promotionTestBean.expired ? 'red' : 'green'}" disabled="true">
+							<f:convertDateTime type="date" locale="en_US"/>
+						</h:inputText>
+						<h:outputText value="Labor Charges: " />
+						<h:inputText value="#{promotionTestBean.wsPromo.laborAmount}" styleClass="w3-input w3-border" required="true" requiredMessage="Enter labor charges"/>
+						<br/>
+						<h:commandButton value="Update Promo Code"
+							actionListener="#{promotionTestBean.usePromoCode()}"
+							styleClass="w3-btn q-btn-vendor"/>
+					</h:panelGrid>
+					
+					</div>
+				</h:panelGroup>
+				<div class="w3-padding-12"></div>
+			</div>
+		</h:form>
+	</div>
+</h:body>
+</html>

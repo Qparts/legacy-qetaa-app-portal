@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<div class="w3-container">
+		<div class="">
+			<div align="left" class="w3-half">
+				<h:form>
+					<div class="w3-col s6">
+						<div class="q-navbar">
+							<h:panelGrid columns="4" styleClass="w3-table">
+								<h:outputLink value="home"
+									styleClass="q-nav-button w3-hover-text-blue">
+									<i class="fa fa-home"> </i>
+								</h:outputLink>
+								<h:outputLink value="quotations"
+									styleClass="q-nav-button w3-hover-text-blue">
+									<i class="fa fa-file-text"> </i>
+									<ui:fragment
+										rendered="#{notificationBean.quotations gt 0}">
+										<span class="q-notification-badge">#{notificationBean.quotations}</span>
+									</ui:fragment>
+								</h:outputLink>
+								<h:outputLink styleClass="q-nav-button w3-hover-text-blue"
+									value="part_orders">
+									<i class="fa fa-gears"> </i>
+									<ui:fragment
+										rendered="#{notificationBean.parts gt 0}">
+										<span class="q-notification-badge">#{notificationBean.parts}</span>
+									</ui:fragment>
+								</h:outputLink>
+								<h:commandLink actionListener="#{loginBean.doLogout()}"
+									styleClass="w3-hover-text-red q-nav-button">
+									<i class="fa fa-power-off"> </i>
+								</h:commandLink>
+							</h:panelGrid>
+						</div>
+					</div>
+				</h:form>
+			</div>
+			<div align="right" class="w3-half">
+				<h:outputText value="portal" style="color:white;vertical-align:top;" />
+				<h:graphicImage value="/resources/images/logo_no_text.png"
+					width="61" rendered="true" />
+			</div>
+		</div>
+		<p:separator rendered="false" height="0"></p:separator>
+	</div>
+</ui:composition>
